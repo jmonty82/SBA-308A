@@ -1,9 +1,14 @@
-fetch("https://api.jikan.moe/v4/anime")
-.then(response => {
-    if(!response.ok){
-        throw new Error("Could not fetch resource");
+async function fetchData(){
+    try {
+        const search = document.getElementById("Search").value.toLowerCase();
+        const response = await fetch("https://api.jikan.moe/v4/anime")
+        if (!response.ok) {
+            throw new Error("Could not fetch resource");
+        }
+        const data = await response.json();
+        console.log(data);
     }
-    return response.json();
-})
-.then(data => console.log(data))
-.catch(error => console.error(error));
+    catch (error) {
+        console.error(error);
+    }
+}
